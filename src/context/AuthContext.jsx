@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
     setRegisterInfo(info);
   }, []);
 
-  console.log("loginInfo", loginInfo);
+  // console.log("loginInfo", loginInfo);
 
   //update login info
   const updateLoginInfo = useCallback((info) => {
@@ -52,23 +52,26 @@ export const AuthContextProvider = ({ children }) => {
     [registerInfo]
   );
 
-  const loginUser = useCallback(async () => {
-    e.preventDefault();
-    setIsLoginLoading(true);
-    setLoginError(false);
-    const response = await postResquest(
-      `${baseurl}/user/login`,
-      JSON.stringify(loginInfo)
-    );
-    if (response.error) {
-      // console.log("hello", response.message);
+  const loginUser = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsLoginLoading(true);
+      setLoginError(false);
+      const response = await postResquest(
+        `${baseurl}/user/login`,
+        JSON.stringify(loginInfo)
+      );
+      if (response.error) {
+        // console.log("hello", response.message);
+        setIsLoginLoading(false);
+        return setLoginError(response);
+      }
+      localStorage.setItem("User", JSON.stringify(response));
+      setUser(response);
       setIsLoginLoading(false);
-      return setLoginError(response);
-    }
-    localStorage.setItem("User", JSON.stringify(response));
-    setUser(response);
-    setIsLoginLoading(false);
-  }, [loginInfo]);
+    },
+    [loginInfo]
+  );
 
   // console.log("user", user);
   useEffect(() => {
