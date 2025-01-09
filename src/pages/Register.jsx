@@ -9,6 +9,7 @@ const Register = () => {
     registerError,
     isRegisterLoading,
   } = useContext(AuthContext);
+  //  console.log("registerError", registerError);
   return (
     <>
       <Form onSubmit={registerUser}>
@@ -49,9 +50,9 @@ const Register = () => {
               <Button variant="primary " type="submit">
                 {isRegisterLoading ? "Creating your account " : "Register"}
               </Button>
-              {registerError?.error && (
+              {registerError?.message && (
                 <Alert variant="danger">
-                  <p>{registerError?.message.message}</p>
+                  <p>{registerError?.message}</p>
                 </Alert>
               )}
             </Stack>
