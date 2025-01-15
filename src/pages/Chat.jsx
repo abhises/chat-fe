@@ -3,6 +3,7 @@ import { ChatContext } from "../context/ChatContext";
 import { useContext } from "react";
 import UserChat from "../components/chat/UserChat";
 import { AuthContext } from "../context/AuthContext";
+import PotentailChats from "../components/chat/PotentailChats";
 const Chat = () => {
   const { userChats, isUserChatsLoading, userChatError } =
     useContext(ChatContext);
@@ -11,6 +12,7 @@ const Chat = () => {
   // console.log("users chat at userChats", userChats);
   return (
     <Container>
+      <PotentailChats />
       {userChats?.length < 1 ? null : (
         <Stack direction="horizontal" gap={4} className="align-items-start">
           <Stack className="messages-box flex-grow-0 pe-3" gap={3}>
