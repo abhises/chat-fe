@@ -4,7 +4,8 @@ import { baseurl, getRequest, postResquest } from "../utils/services";
 export const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children, user }) => {
-  const [userChats, setUserChats] = useState();
+  // console.log("user at chat context", user);
+  const [userChats, setUserChats] = useState(null);
   const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
   const [userChatError, setUserChatError] = useState(null);
 
@@ -14,7 +15,7 @@ export const ChatContextProvider = ({ children, user }) => {
         setIsUserChatsLoading(true);
         setUserChatError(null);
         const response = await getRequest(`${baseurl}/chat/${user?._id}`);
-        // console.log("userchat", response);
+        // console.log("userchatresponse", response);
         setIsUserChatsLoading(false);
         if (response.error) {
           return setUserChatError(response);
@@ -23,7 +24,7 @@ export const ChatContextProvider = ({ children, user }) => {
       }
     };
     getUserChats();
-  }, []);
+  }, [user]);
   return (
     <ChatContext.Provider
       value={{ userChats, isUserChatsLoading, userChatError }}>

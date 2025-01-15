@@ -8,7 +8,7 @@ const Chat = () => {
     useContext(ChatContext);
   const { user } = useContext(AuthContext);
 
-  // console.log("logs", userChats);
+  // console.log("users chat at userChats", userChats);
   return (
     <Container>
       {userChats?.length < 1 ? null : (

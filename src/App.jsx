@@ -11,6 +11,7 @@ import { ChatContextProvider } from "./context/ChatContext";
 
 const App = () => {
   const { user } = useContext(AuthContext);
+  // console.log("user at appjs", user);
   return (
     <ChatContextProvider user={user}>
       <NavBar />
