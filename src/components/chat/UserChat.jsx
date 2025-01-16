@@ -15,6 +15,7 @@ const UserChat = ({ chat, user }) => {
       <div className="d-flex">
         <div className="me-2">
           <img src={avatar} height="35px" />
+          <span className="user-online"></span>
         </div>
         <div className="text-content">
           <div className="name">{recipientUser?.name}</div>

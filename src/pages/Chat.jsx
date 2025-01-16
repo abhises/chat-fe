@@ -4,8 +4,9 @@ import { useContext } from "react";
 import UserChat from "../components/chat/UserChat";
 import { AuthContext } from "../context/AuthContext";
 import PotentailChats from "../components/chat/PotentailChats";
+import ChatBox from "../components/chat/ChatBox";
 const Chat = () => {
-  const { userChats, isUserChatsLoading, userChatError } =
+  const { userChats, isUserChatsLoading, userChatError, updateCurrentChat } =
     useContext(ChatContext);
   const { user } = useContext(AuthContext);
 
@@ -19,13 +20,13 @@ const Chat = () => {
             {isUserChatsLoading && <p>Loading chats ...</p>}
             {userChats?.map((chat, index) => {
               return (
-                <div key={index}>
+                <div key={index} onClick={() => updateCurrentChat(chat)}>
                   <UserChat chat={chat} user={user} />
                 </div>
               );
             })}
           </Stack>
-          <p>Chat box</p>
+          <ChatBox />
         </Stack>
       )}
     </Container>
