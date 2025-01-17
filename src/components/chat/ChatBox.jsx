@@ -34,7 +34,7 @@ const ChatBox = () => {
       <div className="chat-header">
         <strong>{recipientUser?.name}</strong>
       </div>
-      <Stack gap={3} className="message">
+      <Stack gap={3} className="messages">
         {messages &&
           messages.map((message, index) => (
             <Stack
