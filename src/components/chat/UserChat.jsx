@@ -3,11 +3,17 @@ import { useFetchRecipientUser } from "../../hooks/useFetchRecipient";
 import avatar from "../../assets/avatar.avif";
 import { useContext } from "react";
 import { ChatContext } from "../../context/ChatContext";
+import { unreadNotificationsFunc } from "../../utils/unreadNotifications";
 
 const UserChat = ({ chat, user }) => {
   // console.log("userchat inside userchat", user);
   const { recipientUser } = useFetchRecipientUser(chat, user);
-  const { onlineUsers } = useContext(ChatContext);
+  const { onlineUsers, notifications } = useContext(ChatContext);
+
+  const unreadNotificaions = unreadNotificationsFunc(notifications);
+  const thisUserNotification = unreadNotificaions?.filter(
+    (n) => n.senderId === recipientUser?._id
+  );
 
   const isOnline = onlineUsers?.some(
     (user) => user?.userId === recipientUser?._id
@@ -30,9 +36,14 @@ const UserChat = ({ chat, user }) => {
         </div>
         <div className="d-flex flex-column align-items-end">
           <div className="date">12/12/2022</div>
-          <div className="this-user-notifications">
-            {" "}
-            2 <span className={isOnline ? "user-online" : ""}></span>
+          <div
+            className={
+              thisUserNotification?.length > 0 ? "this-user-notifications" : ""
+            }>
+            {thisUserNotification?.length > 0
+              ? thisUserNotification?.length
+              : ""}
+            <span className={isOnline ? "user-online" : ""}></span>
           </div>
         </div>
       </div>
