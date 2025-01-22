@@ -5,6 +5,7 @@ import UserChat from "../components/chat/UserChat";
 import { AuthContext } from "../context/AuthContext";
 import PotentailChats from "../components/chat/PotentailChats";
 import ChatBox from "../components/chat/ChatBox";
+
 const Chat = () => {
   const { userChats, isUserChatsLoading, userChatError, updateCurrentChat } =
     useContext(ChatContext);
