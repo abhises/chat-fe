@@ -27,9 +27,9 @@ const Chat = () => {
               );
             })}
           </div>
-          <div className="chatbox-container flex-grow-1">
-            <ChatBox />
-          </div>
+          <ChatBox />
+
+          {/* <div className="chatbox-container flex-grow-1"></div> */}
         </div>
       )}
     </Container>
