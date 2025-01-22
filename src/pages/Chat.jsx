@@ -16,8 +16,8 @@ const Chat = () => {
     <Container>
       <PotentailChats />
       {userChats?.length < 1 ? null : (
-        <Stack direction="horizontal" gap={4} className="align-items-start">
-          <Stack className="messages-box flex-grow-0 pe-3" gap={3}>
+        <div className="d-flex flex-column flex-md-row align-items-start chat-container">
+          <div className="messages-box flex-grow-1 pe-3">
             {isUserChatsLoading && <p>Loading chats ...</p>}
             {userChats?.map((chat, index) => {
               return (
@@ -26,9 +26,11 @@ const Chat = () => {
                 </div>
               );
             })}
-          </Stack>
-          <ChatBox />
-        </Stack>
+          </div>
+          <div className="chatbox-container flex-grow-1">
+            <ChatBox />
+          </div>
+        </div>
       )}
     </Container>
   );
